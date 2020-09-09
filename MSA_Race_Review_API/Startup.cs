@@ -44,7 +44,8 @@ namespace MSA_Race_Review_API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "reviewSIMS", Version = "v1" });
             });
-            var connection = Configuration.GetConnectionString("reviewSIMSConnection");
+            // var connection = Configuration.GetConnectionString("reviewSIMSConnection");
+			var connection = Environment.GetEnvironmentVariable("reviewSIMSConnection");
             services.AddDbContext<ReviewContext>(options => options.UseSqlServer(connection));
             services.AddControllers();
             
