@@ -24,6 +24,7 @@ public class ReviewContext : DbContext
         IConfigurationRoot configuration = new ConfigurationBuilder()
        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
        .AddJsonFile("appsettings.json")
+	   .AddEnvironmentVariables()
        .Build();
 
         // schoolSIMSConnection is the name of the key that
