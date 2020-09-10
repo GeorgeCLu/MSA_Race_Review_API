@@ -138,7 +138,7 @@ namespace MSA_Race_Review_API.Controllers
                 }
             }
             var updatedReview = await _context.Review.FindAsync(id);
-            return updatedReview();
+            return updatedReview;
         }
 
         // PUT: api/Reviews/5
@@ -179,7 +179,7 @@ namespace MSA_Race_Review_API.Controllers
         // PUT: api/Reviews/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("/update/Score{id}")]
+        [HttpPut("/update/Score/{id}")]
         public async Task<IActionResult> PutupdateScore(int id, int new_score)
         {
             // update race info
