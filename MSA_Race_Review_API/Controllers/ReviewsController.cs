@@ -108,7 +108,7 @@ namespace MSA_Race_Review_API.Controllers
         // PUT: api/Reviews/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("/upvote{id}")]
+        [HttpPut("/upvote/{id}")]
         public async Task<IActionResult> PutUpvoteReview(int id)
         {
             // update race info
@@ -137,13 +137,14 @@ namespace MSA_Race_Review_API.Controllers
                     throw;
                 }
             }
-            return NoContent();
+            var updatedReview = await _context.Review.FindAsync(id);
+            return updatedReview();
         }
 
         // PUT: api/Reviews/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("/downvote{id}")]
+        [HttpPut("/downvote/{id}")]
         public async Task<IActionResult> PutDownvoteReview(int id)
         {
             // update race info
