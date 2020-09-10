@@ -100,7 +100,8 @@ namespace MSA_Race_Review_API.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRace(int id, Race race)
+        // public async Task<IActionResult> PutRace(int id, Race race)
+        public async Task<ActionResult<Race>> PutRace(int id, Race race)
         {
             if (id != race.raceId)
             {
@@ -124,8 +125,10 @@ namespace MSA_Race_Review_API.Controllers
                     throw;
                 }
             }
-
-            return NoContent();
+            
+            var updatedRace = await _context.Race.FindAsync(id);
+            return updatedRace;
+            // return NoContent();
         }
 
         // POST: api/Races
