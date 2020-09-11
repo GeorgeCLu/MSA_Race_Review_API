@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Globalization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -317,6 +318,8 @@ namespace MSA_Race_Review_API.Controllers
                     throw;
                 }
             }
+            
+            review.timeCreated = DateTime.Now;
 
             // add review
             _context.Review.Add(review);
