@@ -242,6 +242,42 @@ namespace MSA_Race_Review_API.Controllers
             // return NoContent();
         }
 
+        // PUT: api/Reviews/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [HttpPut("/update/Review/{id}")]
+        public async Task<ActionResult<Review>> PutupdateScore(int id, string new_review) // public async Task<IActionResult> PutupdateScore(int id, int new_score)
+        {
+            // update race info
+            var review = await _context.Review.FindAsync(id);
+            if (review == null)
+            {
+                return NotFound();
+            }
+            review.reviewText = new_review;
+
+            _context.Entry(review).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ReviewExists(review.reviewId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            var updatedReview = await _context.Review.FindAsync(id);
+            return updatedReview;
+            // return NoContent();
+        }
+
         private bool RaceExists(int id)
         {
             return _context.Race.Any(e => e.raceId == id);
