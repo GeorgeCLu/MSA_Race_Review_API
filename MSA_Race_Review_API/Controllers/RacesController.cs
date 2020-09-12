@@ -107,7 +107,21 @@ namespace MSA_Race_Review_API.Controllers
             {
                 return BadRequest();
             }
+            
+            // -----------------------
+            
+            var old_race = await _context.Race.FindAsync(id);
 
+            if (old_race == null)
+            {
+                return NotFound();
+            }
+            
+            race.averageScore = (int)old_race.averageScore;
+            race.scoreSum = (int)old_race.scoreSum;
+            race.totalReviews = (int)old_race.totalReviews;
+            
+            // -----------------------
             _context.Entry(race).State = EntityState.Modified;
 
             try

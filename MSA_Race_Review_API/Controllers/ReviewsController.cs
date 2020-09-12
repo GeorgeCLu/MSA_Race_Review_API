@@ -84,7 +84,18 @@ namespace MSA_Race_Review_API.Controllers
             {
                 return BadRequest();
             }
-
+            
+            // -------------------
+            var old_review = await _context.Review.FindAsync(id);
+            if (old_review == null)
+            {
+                return NotFound();
+            }
+            review.upvotes = (int)old_review.upvotes;
+            review.timeCreated = old_review.timeCreated;
+            
+            // -------------------
+            
             _context.Entry(review).State = EntityState.Modified;
 
             try
