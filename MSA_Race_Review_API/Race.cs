@@ -24,10 +24,10 @@ namespace MSA_Race_Review_API
         [Required]
         public int year { get; set; }
         [Required]
-        [StringLength(25, ErrorMessage = "The track value cannot exceed 25 characters. ")]  
+        [StringLength(50, ErrorMessage = "The track value cannot exceed 50 characters. ")]  
         public string track { get; set; }
         [Required]
-        [StringLength(25, ErrorMessage = "The location value cannot exceed 25 characters. ")]  
+        [StringLength(50, ErrorMessage = "The location value cannot exceed 50 characters. ")]  
         public string location { get; set; }
         public int averageScore { get; set; }
         public int scoreSum { get; set; }
