@@ -17,13 +17,17 @@ namespace MSA_Race_Review_API
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int raceId { get; set; }
         [Required]
+        [StringLength(50, ErrorMessage = "The raceName value cannot exceed 50 characters. ")]  
         public string raceName { get; set; }
+        [StringLength(50, ErrorMessage = "The championship value cannot exceed 50 characters. ")]  
         public string championship { get; set; }
         [Required]
         public int year { get; set; }
         [Required]
+        [StringLength(25, ErrorMessage = "The track value cannot exceed 25 characters. ")]  
         public string track { get; set; }
         [Required]
+        [StringLength(25, ErrorMessage = "The location value cannot exceed 25 characters. ")]  
         public string location { get; set; }
         public int averageScore { get; set; }
         public int scoreSum { get; set; }

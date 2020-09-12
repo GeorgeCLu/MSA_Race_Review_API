@@ -13,12 +13,12 @@ namespace MSA_Race_Review_API
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int reviewId { get; set; }
         [Required]
-        [StringLength(255)]
+        [StringLength(255, ErrorMessage = "The reviewtext value cannot exceed 255 characters. ")]  
         public string reviewText { get; set; }
         [Required]
         public int? reviewScore { get; set; }
         [Required]
-        [StringLength(20)]
+        [StringLength(25, ErrorMessage = "The reviewName value cannot exceed 25 characters. ")]  
         public string reviewerName { get; set; }
         public int upvotes { get; set; }
         public DateTime timeCreated { get; set; }
