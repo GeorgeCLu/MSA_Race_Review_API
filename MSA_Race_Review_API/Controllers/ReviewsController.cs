@@ -221,6 +221,7 @@ namespace MSA_Race_Review_API.Controllers
                 return NotFound();
             }
             race.scoreSum = (int)(race.scoreSum - old_score + review.reviewScore);
+            race.averageScore = race.scoreSum / race.totalReviews;
             _context.Entry(race).State = EntityState.Modified;
 
             try
@@ -341,8 +342,13 @@ namespace MSA_Race_Review_API.Controllers
             }
             int score_to_minus = (int)review.reviewScore;
             race.totalReviews -= 1;
-            race.scoreSum = (int)(race.scoreSum - score_to_minus + review.reviewScore);
-            race.averageScore = race.scoreSum / race.totalReviews;
+            if (race.totalReviews == 0) {
+              race.scoreSum = 0;
+              race.averageScore = 0;
+            } else {
+              race.scoreSum = (int)(race.scoreSum - score_to_minus);
+              race.averageScore = race.scoreSum / race.totalReviews;
+            }
 
             _context.Entry(race).State = EntityState.Modified;
 
