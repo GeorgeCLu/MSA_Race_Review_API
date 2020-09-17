@@ -35,7 +35,7 @@ namespace MSA_Race_Review_API
                     builder =>
                     {
                         builder.WithOrigins("http://localhost:3000",
-                                            "replaceThisByYourHostedUrl.com")
+                                            "https://racereviewmsa.azurewebsites.net")
                                             .AllowAnyHeader()
                                             .AllowAnyMethod();
                     });
